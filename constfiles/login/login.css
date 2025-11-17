@@ -8,7 +8,7 @@
 }
 
 form{
-    height: 360px;
+    height: 380px;
     font-size: 30px;
     width: 400px;
     backdrop-filter: brightness(70%) blur(10px);
@@ -56,6 +56,9 @@ input{
     color: white;
     font-weight: bolder;
 }
+#submit:disabled{
+    opacity: 0.5;
+}
 label{
     position: absolute;
     font-size: 15px;
@@ -74,4 +77,15 @@ label{
 }
 #password:focus{
     outline: none;
+}
+#eye{
+    position: absolute;
+    top: 210px;
+    background: transparent;
+    color: white;
+    border: none;
+    right: 40px;
+    height: 20px;
+    width: 20px;
+    font-size: 15px;
 }

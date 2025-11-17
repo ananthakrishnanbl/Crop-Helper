@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="\login\login.css">
 </head>
 <body>
@@ -12,9 +13,10 @@
             <p>Login</p>
             <input type="text" name="username" id="username">
             <label class="username" value=" ">Username</label>
-            <input type="text" name="password" id="password">
+            <input type="password" name="password" id="password">
             <label class="password">Password</label>
-            <input type="submit" placeholder="SUBMIT" id="submit">
+            <div id="eye" class="closed"><i class="fa-regular fa-eye-slash"></i></div>
+            <input type="submit" placeholder="SUBMIT" id="submit" disabled="true">
         </form>
     </div>
     <script src="\login\login.js"></script>
