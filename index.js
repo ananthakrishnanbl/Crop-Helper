@@ -8,11 +8,16 @@ app.use(express.urlencoded({extended:true}))
 app.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"constfiles/home/home.html"));
 })
+app.get("/home/home.css",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/home/home.css"));
+})
+app.get("/home/home.js",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/home/home.js"));
+})
 
 app.get("/login",(req,res)=>{
     res.sendFile(path.join(__dirname,"constfiles/login/login.html"));
 })
-
 app.get("/login/login.css",(req,res)=>{
     res.sendFile(path.join(__dirname,"constfiles/login/login.css"));
 })
