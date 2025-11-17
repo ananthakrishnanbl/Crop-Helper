@@ -1,0 +1,23 @@
+{
+  "name": "crop-helper",
+  "version": "1.0.0",
+  "description": "First Project only contains a simple login application",
+  "homepage": "https://github.com/ananthakrishnanbl/Crop-Helper#readme",
+  "bugs": {
+    "url": "https://github.com/ananthakrishnanbl/Crop-Helper/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ananthakrishnanbl/Crop-Helper.git"
+  },
+  "license": "ISC",
+  "author": "Ananthakrishnan",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
