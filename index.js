@@ -1,11 +1,14 @@
-const express = require("express");
-const path=require("path");
-const fs=require("fs")
+import express from "express";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+import { userData , allUserPlots } from "./data.mjs";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app=express();
 const port=3000;
 let errorTry=0;
 let user;
-const userData=require("./data.js");
 
 app.use(express.urlencoded({extended:true}))
 
@@ -54,9 +57,22 @@ app.get("/create-account",(req,res)=>{
     res.send("This Page is under construction")
 })
 
+app.get("/dashboard.css",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/dashboard/dashboard.css"));
+})
+app.get("/dashboard.js",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/dashboard/dashboard.js"));
+})
 app.get("/:username",(req,res)=>{
     if (user && user.username===req.params.username){
-        res.send("This page is under construction");
+        let data=fs.readFileSync(path.join(__dirname,"constfiles/dashboard/dashboard.html"));
+        const userPlot = allUserPlots.filter((val)=>{
+            return val.userName===user.username;
+        })[0];
+        data = data.toString().replace("DATA",JSON.stringify(user));
+        data=data.replace("10101",userPlot.plotCount)
+        data=data.replace("USERPLOTS",JSON.stringify(userPlot.plots))
+        res.send(data);
     }
     else{
         res.redirect("/login");

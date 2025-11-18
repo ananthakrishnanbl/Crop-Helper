@@ -1,0 +1,50 @@
+*{
+    overflow-x: hidden;
+}
+
+.navbar{
+    height: 50px;
+    width: 95vw;
+    background-color: #2121219d;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+    z-index: 1;
+}
+.navbar a{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+.navbar p{
+    margin: 0px;
+    margin-left: 10px;
+    font-size: 20px;
+    padding: 0px;
+    font-family: "VT323";
+}
+.navbar .icon{
+    font-size: 24px;
+}
+.icon-logo{
+    font-size: 30px;
+}
+.logo p{
+    font-family: "Allura";
+}
+
+.main{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
