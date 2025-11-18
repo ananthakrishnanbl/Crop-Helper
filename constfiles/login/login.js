@@ -1,5 +1,9 @@
 const input=document.querySelectorAll("input")
 
+if (wasWrong){
+    document.querySelector(".waswrong").style.visibility="visible";
+}
+
 input[0].addEventListener("click",(e)=>{
     const label=document.querySelector(".username");
     label.style.transform="translateY(-30px)";
