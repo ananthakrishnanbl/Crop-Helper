@@ -43,6 +43,7 @@ app.post("/login",(req,res)=>{
     user= userData.filter((val)=>{
         return val.username===username && val.password==password;
     })[0]
+    console.log("username : "+username + "| password: " + password);
     if (user){
         errorTry=0;
         res.redirect(`/${user.username}`);
@@ -55,6 +56,16 @@ app.post("/login",(req,res)=>{
 
 app.get("/create-account",(req,res)=>{
     res.send("This Page is under construction")
+})
+
+app.get("/logout",(req,res)=>{
+    if (user){
+        user=undefined;
+        res.redirect("/");
+    }
+    else{
+        res.redirect("/login");
+    }
 })
 
 app.get("/dashboard.css",(req,res)=>{
@@ -71,6 +82,7 @@ app.get("/:username",(req,res)=>{
         })[0];
         data = data.toString().replace("DATA",JSON.stringify(user));
         data=data.replace("10101",userPlot.plotCount)
+        data=data.replace("{{name}}",user.username);
         data=data.replace("USERPLOTS",JSON.stringify(userPlot.plots))
         res.send(data);
     }

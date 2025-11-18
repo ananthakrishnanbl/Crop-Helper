@@ -15,13 +15,15 @@ export const allUserPlots=[
         plotCount: 2,
         plots: [
             {
-                plotName: "Ronaldo",
+                plotID:"P1",
+                plotName: "NOTSET",
                 country: "India",
                 state: "Kerala",
                 district: "Trivandrum",
                 crop: "toBeAdded"
             },
             {
+                plotID:"P2",
                 plotName: "NOTSET",
                 country: "India",
                 state: "Kerala",
@@ -35,20 +37,23 @@ export const allUserPlots=[
         plotCount: 3,
         plots: [
             {
-                plotName: "Messi",
+                plotID:"P1",
+                plotName: "NOTSET",
                 country: "India",
                 state: "Kerala",
                 district: "Trivandrum",
                 crop: "toBeAdded"
             },
             {
-                plotName: "Neymer",
+                plotID:"P2",
+                plotName: "NOTSET",
                 country: "India",
                 state: "Kerala",
                 district: "Trivandrum",
                 crop: "toBeAdded"
             },
             {
+                plotID:"P3",
                 plotName: "NOTSET",
                 country: "India",
                 state: "Kerala",
