@@ -1,6 +1,8 @@
 const plotBox=document.querySelector(".plotdetails");
 console.log(JSON.stringify(userPlots));
 
+document.querySelector(".avatar").style.backgroundImage=`url("${avatar[userData.avatar_name]}")`;
+
 userPlots.forEach((val,index)=>{
     const newElement = document.createElement("div");
     newElement.classList.add("plot");

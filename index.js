@@ -1,8 +1,9 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
+import session from "express-session";
 import { fileURLToPath } from "url";
-import { userData , allUserPlots } from "./data.mjs";
+import { userData , allUserPlots, avatar } from "./data.mjs";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app=express();
@@ -10,7 +11,17 @@ const port=3000;
 let errorTry=0;
 let user;
 
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({extended:true}));
+app.use(
+  session({
+    secret: "123Why123",     // change this
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: null
+    },
+  })
+);
 
 app.get("/",(req,res)=>{
     res.sendFile(path.join(__dirname,"constfiles/home/home.html"));
@@ -24,11 +35,16 @@ app.get("/home/home.js",(req,res)=>{
 
 app.get("/login",(req,res)=>{
     const data=fs.readFileSync(path.join(__dirname,"constfiles/login/login.html"));
-    if (errorTry){
-        res.send(data.toString().replace("false","true"));
+    if (!user){
+        if (errorTry){
+            res.send(data.toString().replace("false","true"));
+        }
+        else{
+            res.send(data.toString());
+        }
     }
     else{
-        res.send(data.toString());
+        res.redirect(`/${user.username}`);
     }
 })
 app.get("/login/login.css",(req,res)=>{
@@ -68,6 +84,12 @@ app.get("/logout",(req,res)=>{
     }
 })
 
+app.get("/avatar.css",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/avatar/avatar.css"));
+})
+app.get("/avatar.js",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/avatar/avatar.js"));
+})
 app.get("/dashboard.css",(req,res)=>{
     res.sendFile(path.join(__dirname,"constfiles/dashboard/dashboard.css"));
 })
@@ -81,9 +103,35 @@ app.get("/:username",(req,res)=>{
             return val.userName===user.username;
         })[0];
         data = data.toString().replace("DATA",JSON.stringify(user));
+        data=data.replace("10101",userPlot.plotCount);
+        data=data.replaceAll("301",user.username);
+        data=data.replace("USERPLOTS",JSON.stringify(userPlot.plots));
+        data=data.replace("AVATARDATA",JSON.stringify(avatar));
+        res.send(data);
+    }
+    else{
+        res.redirect("/login");
+    }
+})
+app.get("/:username/chatbot",(req,res)=>{
+    if (user && user.username===req.params.username){
+        res.send(user.username);
+    }
+    else{
+        res.redirect("/login")
+    }
+})
+app.get("/:username/avatar-change",(req,res)=>{
+    if (user && user.username===req.params.username){
+        let data=fs.readFileSync(path.join(__dirname,"constfiles/avatar/avatar.html"));
+        const userPlot = allUserPlots.filter((val)=>{
+            return val.userName===user.username;
+        })[0];
+        data = data.toString().replace("DATA",JSON.stringify(user));
         data=data.replace("10101",userPlot.plotCount)
-        data=data.replace("{{name}}",user.username);
+        data=data.replaceAll("301",user.username);
         data=data.replace("USERPLOTS",JSON.stringify(userPlot.plots))
+        data=data.replace("AVATARDATA",JSON.stringify(avatar))
         res.send(data);
     }
     else{

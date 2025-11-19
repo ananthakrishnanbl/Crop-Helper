@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Avatar Change</title>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="\dashboard.css" rel="stylesheet">
+    <link href="\avatar.css" rel="stylesheet">
 </head>
 <body>
     <div class="navbar">
         <div class="logo"><a href=""><i class="fa-brands fa-pagelines icon-logo"></i><p>CropHelper</p></a></div>
-        <div class="seePlots"><a href=""><p>See Plots</p></a></div>
+        <div class="seePlots"><a href="\301"><p>See Plots</p></a></div>
         <div class="problemSolver"><a href=""><p>Help</p></a></div>
         <div class="logout"><a href="\logout"><i class="fa-regular fa-circle-user icon"></i><p>Logout</p></a></div>
     </div>
@@ -29,16 +29,18 @@
                 <div class="h-setting h-setting4"><a href="">Delete Account</a></div>
             </div>
         </div>
-        <div class="plotdetails">
-
+    </div>
+    <div class="change-avatar">
+        <p class="message">Choose the Avatar you want to Choose...</p>
+        <div class="avatar-box">
         </div>
     </div>
     <script>
         let userData = DATA;
         let plotCount =10101;
         let userPlots = USERPLOTS;
-        let avatar= AVATARDATA;
+        let avatar = AVATARDATA;
     </script>
-    <script src="\dashboard.js"></script>
+    <script src="\avatar.js"></script>
 </body>
 </html>

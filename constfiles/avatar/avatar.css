@@ -100,6 +100,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .settings a{
     color: white;
@@ -124,6 +126,7 @@ body{
 }
 .setting2{
     top: 360px;
+    backdrop-filter: blur(10px) brightness(60%);
 }
 .setting3   {
     top: 410px;
@@ -172,58 +175,57 @@ body{
     text-decoration: none;
 }
 
-.plotdetails{
+.change-avatar{
     height: calc(100vh - 50px);
-    width: calc(100% - 300px);
-    background: radial-gradient(circle at center,violet, blue,black);
-    color: white;
+    width: calc(100vw - 300px);
     position: absolute;
-    bottom: 0px;
+    top: 50px;
     right: 0px;
-    overflow-y: auto;
-}
-.plot{
-    width: 80%;
-    height: 300px;
-    margin: 10px;
-    scrollbar-width: thin;
-    backdrop-filter: blur(100px) brightness(60%);
-    border-radius: 10px;
-    border: 1px blue solid; 
-    justify-self: center;
-}
-.plotdetails::-webkit-scrollbar{
-    background-color: #212121;
-    width: 10px;
-}   
-.plotdetails::-webkit-scrollbar-thumb{
-    background-color: rgb(49, 49, 69);
-    width: 80%; 
-}
-.plotdetails::-webkit-scrollbar-track{
-    background-color: black;
-}
-.plot .name-box{
+    font-size: 30px;
     font-family: "VT323";
-    width: 150px; 
-    text-align: center;
-    height: 50px;
-    font-size: 50px;
-    position: relative;
+    color: white;
+}
+.change-avatar p{
+    position: absolute;
+    left: 20px;
     top: 20px;
-    left: 20px;
+    padding: 0px;
+    margin: 0px;
 }
-.plot .data-box{
-    height: 150px;
-    width: 150px;
-    font-family: "VT323";
-    position: relative;
-    top: 22px;
-    left: 20px;
-    text-align: left;
-
+.avatar-box{
+    position: absolute;
+    left: 2.5%;
+    top: 80px;
+    height: 85%;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    justify-content: space-around;
 }
-.data-box a{
-    color: red;
-    text-decoration: none;
+.avatars{
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    background-color: white;
+    scale:0.9;
+    transition: all 0.25s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease-in-out;
+}
+.easeout{
+    opacity: 0.6;
+    scale: 0.8;
+}
+.avatar-box::-webkit-scrollbar{
+    background-color: transparent;
+    width: 8px;
+}   
+.avatar-box::-webkit-scrollbar-thumb{
+    background-color: rgb(49, 49, 69);
+}
+.avatar-box::-webkit-scrollbar-track{
+    background-color: transparent;
 }
