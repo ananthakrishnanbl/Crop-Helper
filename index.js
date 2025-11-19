@@ -9,7 +9,6 @@ const __dirname = path.dirname(__filename);
 const app=express();
 const port=3000;
 let errorTry=0;
-let user;
 
 app.use(express.urlencoded({extended:true}));
 app.use(
@@ -35,7 +34,7 @@ app.get("/home/home.js",(req,res)=>{
 
 app.get("/login",(req,res)=>{
     const data=fs.readFileSync(path.join(__dirname,"constfiles/login/login.html"));
-    if (!user){
+    if (!req.session.user){
         if (errorTry){
             res.send(data.toString().replace("false","true"));
         }
@@ -44,7 +43,7 @@ app.get("/login",(req,res)=>{
         }
     }
     else{
-        res.redirect(`/${user.username}`);
+        res.redirect(`/${req.session.user.username}`);
     }
 })
 app.get("/login/login.css",(req,res)=>{
@@ -56,13 +55,13 @@ app.get("/login/login.js",(req,res)=>{
 
 app.post("/login",(req,res)=>{
     const  { username , password } = req.body;
-    user= userData.filter((val)=>{
+    req.session.user= userData.filter((val)=>{
         return val.username===username && val.password==password;
     })[0]
     console.log("username : "+username + "| password: " + password);
-    if (user){
+    if (req.session.user){
         errorTry=0;
-        res.redirect(`/${user.username}`);
+        res.redirect(`/${username}`);
     }
     else{
         errorTry++;
@@ -75,8 +74,8 @@ app.get("/create-account",(req,res)=>{
 })
 
 app.get("/logout",(req,res)=>{
-    if (user){
-        user=undefined;
+    if (req.session.user){
+        req.session.destroy();
         res.redirect("/");
     }
     else{
@@ -97,15 +96,15 @@ app.get("/dashboard.js",(req,res)=>{
     res.sendFile(path.join(__dirname,"constfiles/dashboard/dashboard.js"));
 })
 app.get("/:username",(req,res)=>{
-    if (user && user.username===req.params.username){
+    if (req.session.user && req.session.user.username===req.params.username){
         let data=fs.readFileSync(path.join(__dirname,"constfiles/dashboard/dashboard.html"));
-        const userPlot = allUserPlots.filter((val)=>{
-            return val.userName===user.username;
+        req.session.userPlot = allUserPlots.filter((val)=>{
+            return val.userName===req.session.user.username;
         })[0];
-        data = data.toString().replace("DATA",JSON.stringify(user));
-        data=data.replace("10101",userPlot.plotCount);
-        data=data.replaceAll("301",user.username);
-        data=data.replace("USERPLOTS",JSON.stringify(userPlot.plots));
+        data = data.toString().replace("DATA",JSON.stringify(req.session.user));
+        data=data.replace("10101",req.session.userPlot.plotCount);
+        data=data.replaceAll("301",req.session.user.username);
+        data=data.replace("USERPLOTS",JSON.stringify(req.session.userPlot.plots));
         data=data.replace("AVATARDATA",JSON.stringify(avatar));
         res.send(data);
     }
@@ -114,24 +113,19 @@ app.get("/:username",(req,res)=>{
     }
 })
 app.get("/:username/chatbot",(req,res)=>{
-    if (user && user.username===req.params.username){
-        res.send(user.username);
+    if (req.session.user && req.session.user.username===req.params.username){
+        res.send(req.session.user.username);
     }
     else{
         res.redirect("/login")
     }
 })
 app.get("/:username/avatar-change",(req,res)=>{
-    if (user && user.username===req.params.username){
+    if (req.session.user && req.session.user.username===req.params.username){
         let data=fs.readFileSync(path.join(__dirname,"constfiles/avatar/avatar.html"));
-        const userPlot = allUserPlots.filter((val)=>{
-            return val.userName===user.username;
-        })[0];
-        data = data.toString().replace("DATA",JSON.stringify(user));
-        data=data.replace("10101",userPlot.plotCount)
-        data=data.replaceAll("301",user.username);
-        data=data.replace("USERPLOTS",JSON.stringify(userPlot.plots))
-        data=data.replace("AVATARDATA",JSON.stringify(avatar))
+        data = data.toString().replace("DATA",JSON.stringify(req.session.user));
+        data=data.replaceAll("301",req.session.user.username);
+        data=data.replace("AVATARDATA",JSON.stringify(avatar));
         res.send(data);
     }
     else{
