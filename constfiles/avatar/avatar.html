@@ -35,6 +35,22 @@
         <div class="avatar-box">
         </div>
     </div>
+        <div class="form">
+            <div class="close">
+                <i class="fa-solid fa-xmark icon"></i>
+            </div>
+        <form action="/301/avatar-change" method="POST">
+            <input type="hidden" name="avatar" class="avatar-name" value="">
+            <div class="avatar-change-message">
+                Do you want to change Your Avatar  to:
+            </div>
+            <div class="avatar-image">
+        
+            </div>
+            <input type="submit" class="submit" value="YES">
+            <div class="no">NO</div>
+        </form>
+    </div>
     <script>
         let userData = DATA;
         let avatar = AVATARDATA;
