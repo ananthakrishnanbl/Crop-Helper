@@ -1,0 +1,93 @@
+.main{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: linear-gradient(45deg,black,darkblue,blue,red);
+}
+
+form{
+    height: 480px;
+    font-size: 30px;
+    width: 400px;
+    backdrop-filter: brightness(70%) blur(10px);
+    position: absolute;
+    top: 50%;
+    left:50%;
+    translate: -50% -50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+form p{
+    position: absolute;
+    top : 10px;
+}
+
+input{
+    height: 30px;
+    width: 80%;
+    position: absolute;
+    padding-left: 5px;
+    background-color: transparent;
+    border: none;
+    border-bottom: white 1px solid;
+    color:white;
+    font-family: "VT323";
+    font-size: 18px;
+}
+
+#username{
+    top: 120px;
+}
+#password{
+    top: 200px;
+}
+#rpassword{
+    top: 280px;
+}
+#submit{
+    top: 380px;
+    height: 50px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: red;
+    border: 2px white solid;
+    color: white;
+    font-weight: bolder;
+}
+#submit:disabled{
+    opacity: 0.5;
+}
+label{
+    position: absolute;
+    font-size: 15px;
+    color: #767272;
+    left: 10%;
+    transition: all 0.5s ease-in-out;
+    font-family: "VT323";
+    font-size: 18px;;
+}
+.username{
+    top: 130px;
+}
+.password{
+    top: 210px;
+}
+.rpassword{
+    top: 290px;
+}
+#username:focus{
+    outline: none;
+}
+#password:focus{
+    outline: none;
+}
+#rpassword:focus{
+    outline: none;
+}

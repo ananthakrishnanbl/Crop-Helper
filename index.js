@@ -82,6 +82,12 @@ app.get("/login/login.css",(req,res)=>{
 app.get("/login/login.js",(req,res)=>{
     res.sendFile(path.join(__dirname,"constfiles/login/login.js"));
 })
+app.get("/create-account/create-account.css",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/create-account/create-account.css"));
+})
+app.get("/create-account/create-account.js",(req,res)=>{
+    res.sendFile(path.join(__dirname,"constfiles/create-account/create-account.js"));
+})
 
 
 /*-----------------Below Part of Progream that needs Mongodb -----------------*/ 
@@ -138,6 +144,39 @@ app.post("/login",async (req,res)=>{
 
 })
 
+app.get("/create-account",async (req,res)=>{
+    const result = await user.find({}, { username: 1, _id: 0 });
+    if (!req.session.user){
+        let data = fs.readFileSync(path.join(__dirname,"constfiles/create-account/create-account.html"));
+        data = data.toString().replace("10101000",JSON.stringify(result));
+        res.send(data);
+    }
+    else{
+        res.redirect(`/${req.session.user.username}`);
+    }
+})
+app.post("/create-account",async (req,res)=>{
+    console.log(req.body.username+"||"+req.body.password);
+    const newUser=new user({
+        username: req.body.username,
+        password: req.body.password,
+        avatar_name: "default"
+    })
+    req.session.user={
+        username: req.body.username,
+        password: req.body.password,
+        avatar_name: "default"
+    }
+    const newPlot= new plots({
+        userName:req.body.username,
+        plotCount: 0,
+        plots : []
+    })
+    await newUser.save();
+    await newPlot.save();
+    res.redirect(`/${req.session.user.username}`)
+})
+
 app.get("/:username",async (req,res)=>{
     if (req.session.user && req.session.user.username===req.params.username){
         const userData =await user.find();
@@ -171,9 +210,6 @@ app.post("/:username/avatar-change",async (req,res)=>{
 /*-----------------Above Part of Progream that needs Mongodb -----------------*/ 
 
 
-app.get("/create-account",(req,res)=>{
-    res.send("This Page is under construction")
-})
 
 app.get("/logout",(req,res)=>{
     if (req.session.user){
