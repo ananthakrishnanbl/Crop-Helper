@@ -15,7 +15,7 @@ form{
     position: absolute;
     top: 50%;
     left:50%;
-    translate: -50% -50%;
+    translate: -100% -50%;
     color: white;
     display: flex;
     justify-content: center;
@@ -41,7 +41,6 @@ input{
     font-family: "VT323";
     font-size: 18px;
 }
-
 #username{
     top: 120px;
 }
@@ -90,4 +89,133 @@ label{
 }
 #rpassword:focus{
     outline: none;
+}
+.eye{
+    height:30px;
+    width: 40px;
+    font-size: 15px;
+    position: absolute;
+    right: 25px;
+    cursor: pointer;
+}
+.eye1{
+    top: 210px;
+}
+.eye2{
+    top: 290px;
+}
+
+
+.welcome{
+    height: 480px;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    right:50%;
+    translate: 100% -50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+.messages{
+    font-family: "Allura";
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: center;
+    align-content:space-around;
+    height: 200px;
+    margin-top: 20px;
+}
+.welcome p{
+    max-width: 90%;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-height: 25px;
+    max-height: 50px;
+    margin-top:0px;
+    margin-bottom: 0px;
+}
+.icon-logo{
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    background: linear-gradient(45deg,red,blue,black);
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    color: transparent;
+    align-items: center;
+    background-clip: text;
+}
+.rules{
+    width: 300px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 60px;
+    text-align: left;
+    font-family: "VT323";
+    list-style: none;
+}
+.rule-book{
+    width: 100%;
+    height: 200px;
+    font-family: "VT323";
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start                 ;
+    align-content: center;
+}
+.rule-book p{
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+ul{
+    padding: 0px;
+    margin: 0px;
+}
+li{
+    margin-top: 10px;   
+}
+.tick{
+    width: 30px;
+    padding: 0px;
+    height: 30px;
+    font-size: 30px;
+    background: red;
+    display: flex;
+    align-items: center;
+    background-clip: text;
+    color: transparent;
+    position: absolute;
+    bottom: 20px;
+}
+.tick1{
+    left: 100px;
+}
+.tick2{
+    left: 200px;
+    translate: -50% 0;
+}
+.tick3{
+    right: 100px;
+}
+.alert{
+    position: absolute;
+    font-size: 20px;
+    font-family: "VT323";
+    display: none;
+    justify-content: space-around;
+    width: 250px;
+    background-color: rgba(255, 0, 0, 0.377);
+    height: 30px;
+    align-items: center;
+    top: 320px;
 }

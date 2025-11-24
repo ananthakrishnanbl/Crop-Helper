@@ -12,7 +12,7 @@
     <div class="navbar">
         <div class="logo"><a href=""><i class="fa-brands fa-pagelines icon-logo"></i><p>CropHelper</p></a></div>
         <div class="seePlots"><a href=""><p>See Plots</p></a></div>
-        <div class="problemSolver"><a href=""><p>Help</p></a></div>
+        <div class="addplot"><p>Add Plot</p></div>
         <div class="logout"><a href="\logout"><i class="fa-regular fa-circle-user icon"></i><p>Logout</p></a></div>
     </div>
     <div class="main">
@@ -32,6 +32,27 @@
         <div class="plotdetails">
 
         </div>
+    </div>
+    <div class="addplot-form">
+        <div class="close"><i class="fa-solid fa-xmark"></i></div>
+        <form action="/301/addplot" method="POST">
+            <p class="plotname">Plot Name: </p>
+            <input type="text" name="plot_name" class="plotName-input" value="NOTSET">
+            <p class="country">Country: </p>
+            <input type="text" name="country" class="country-input" value="India">
+            <p class="state">State: </p>
+            <input type="text" name="state" class="state-input">
+            <p class="district">District: </p>
+            <input type="text" name="district" class="district-input">
+            <p class="latitude">Lat: </p>
+            <input type="number" name="lat" class="lat-input" min="6" max="38" step="any">
+            <p class="longitude">Lon: </p>
+            <input type="number" name="lon" class="lon-input" min="68" max="98" step="any">
+            <p class="crop">Crop: </p>
+            <input type="text" name="crop" class="crop-input">
+            <input type="submit" value="ADD" id="submit">
+            <div class="cancel">CANCEL</div>
+        </form>
     </div>
     <script>
         let userData = DATA;

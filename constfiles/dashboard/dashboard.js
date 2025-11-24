@@ -1,5 +1,4 @@
 const plotBox=document.querySelector(".plotdetails");
-console.log(JSON.stringify(userPlots));
 
 document.querySelector(".avatar").style.backgroundImage=`url("${avatar[userData.avatar_name]}")`;
 
@@ -13,7 +12,7 @@ userPlots.forEach((val,index)=>{
     newNameBox.innerText=val.plotName==="NOTSET"?`PLOT${index+1}`:val.plotName;
     newElement.append(newNameBox);
     const newDataBox = document.createElement("div");
-    const crop = val.crop==="toBeAdded"?"<a href=''>ADD CROP<a>":val.crop;
+    const crop = val.crop===""?"<a href=''>ADD CROP<a>":val.crop;
     newDataBox.classList.add("data-box");
     newDataBox.innerHTML=`<p> COUNTRY : ${val.country}</p><p> STATE : ${val.state}</p><p> DISTRICT : ${val.district }</p><p> CROP : ${crop }</p>`
     newElement.append(newDataBox);
@@ -40,3 +39,27 @@ setting.addEventListener("click",(e)=>{
         arrow.classList.remove("angle-rotate");
     }
 })
+
+document.querySelector(".addplot").addEventListener("click",()=>{
+    navigator.geolocation.getCurrentPosition(location, error);
+    async function location(position){
+        document.querySelector(".lat-input").value=position.coords.latitude;
+        document.querySelector(".lon-input").value=position.coords.longitude;
+        url=`https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json`;
+        const response =await fetch(url); 
+        const data= await response.json();
+        document.querySelector(".state-input").value=data.address.state;
+        document.querySelector(".district-input").value=data.address.state_district;
+    }
+    function error(){
+        console.log("Location Access Denied")
+    }
+    document.querySelector(".addplot-form").style.display="inline-block";
+})
+
+const close = ()=>{
+    document.querySelector(".addplot-form").style.display="none";
+}
+
+document.querySelector(".close").addEventListener("click",close);
+document.querySelector(".cancel").addEventListener("click",close);

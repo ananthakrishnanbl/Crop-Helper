@@ -37,6 +37,8 @@ body{
     font-size: 20px;
     padding: 0px;
     font-family: "VT323";
+    color: white;
+    cursor: pointer;
 }
 .navbar .icon{
     font-size: 24px;
@@ -226,4 +228,168 @@ body{
 .data-box a{
     color: red;
     text-decoration: none;
+}
+
+.addplot-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: 1;
+    width: 500px;
+    height: 500px;
+    display: none;
+}
+
+.addplot-form form{
+    position: absolute;
+    width: 95%;
+    left: 2.5%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 95%;
+    top: 2.5%;
+    backdrop-filter: blur(3px) brightness(60%);
+    border-radius: 10px;
+}
+
+.addplot-form p{
+    min-width:80px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    font-family: "VT323";
+    font-size: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+.addplot-form input{
+    height: 30px;
+    position: absolute;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px white solid;
+    outline: none;
+    color: white;
+    font-family: "VT323";
+    font-size: 17px;
+    padding: 0;
+    margin: 0;
+}
+
+.plotname{
+    top: 20px;
+    left: 20px;
+}
+.country{
+    top: 90px;
+    left: 20px;
+}
+.state{
+    top: 160px;
+    left: 20px;
+}
+.district{
+    top: 230px;
+    left: 20px;
+}
+.latitude{
+    top: 300px;
+    left: 20px;
+}
+.longitude{
+    top: 300px;
+    left: 240px;
+}
+.crop{
+    top: 370px;
+    left: 20px;
+}
+.plotName-input{
+    top: 20px;
+    left: 120px;
+}
+.country-input{
+    top: 90px;
+    left: 120px;
+}
+.state-input{
+    top: 160px;
+    left: 120px;
+}
+.district-input{
+    top: 230px;
+    left: 120px;
+}
+.lat-input{
+    top: 300px;
+    left: 70px;
+    width: 100px;
+}
+.lon-input{
+    top: 300px;
+    left: 290px;
+    width: 100px;
+}
+.crop-input{
+    top: 370px;
+    left: 120px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#submit{
+    background-color: red;
+    font-size: 20px;
+    top: 420px;
+    height: 50px;
+    width: 100px;
+    border:none;
+    border-radius: 50px;
+    border: 2px white solid;
+    left: 50%;
+    translate: -110%;
+    cursor: pointer;
+}
+.cancel{
+    background-color: rgba(255, 0, 0, 0.502);
+    position: absolute;
+    font-family: "VT323";
+    color:  white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    top: 420px;
+    height: 50px;
+    width: 100px;
+    border:none;
+    border-radius: 50px;
+    border: 2px white solid;
+    right: 50%;
+    translate: 110%;
+    cursor: pointer;
+}
+.close{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    color: white;
+    background-color: #212121;
+    border-radius: 15px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    right: 0px;
+    cursor: pointer;
 }

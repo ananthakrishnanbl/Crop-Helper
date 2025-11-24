@@ -10,31 +10,6 @@ const __dirname = path.dirname(__filename);
 const app=express();
 const port=3000;
 
-
-// const dataStore = async()=>{
-//     await mongoose.connect("mongodb://127.0.0.1:27017/userData");
-//     const userSchema = mongoose.Schema({
-//         username:{
-//             type: String,
-//             required: true,
-//             unique: true
-//         },
-//         password:{
-//             type: String,
-//             required: true
-//         },
-//         avatar_name: String
-//     })
-//     const user = mongoose.model("user",userSchema);
-//     const newUser = new user({
-//         username: "nandana",
-//         password: "0803",
-//         avatar_name: "default"
-//     })
-//     await newUser.save();
-// }
-// dataStore();
-
 let userSchema;
 let user;
 let plotSchema;
@@ -106,7 +81,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/userData")
         },
         avatar_name: String
     })
-    user = mongoose.model("user",userSchema);
+    user = mongoose.model("user",userSchema,"users");
     plotSchema = new mongoose.Schema({
         userName: String,
         plotCount: Number,
@@ -117,11 +92,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/userData")
                 country: String,
                 state: String,
                 district: String,
-                crop: String
+                crop: String,
+                latitude: Number,
+                longitude: Number
             }
         ]
     })
-    plots = mongoose.model("plots",plotSchema);
+    plots = mongoose.model("plots",plotSchema,"plots");
 })
 //Setting up Pages
 .then(()=>{
@@ -204,8 +181,26 @@ app.get("/:username",async (req,res)=>{
 app.post("/:username/avatar-change",async (req,res)=>{
     console.log(req.body.avatar);
     await user.updateOne({username:req.session.user.username},{$set:{avatar_name:req.body.avatar}});
-    res.redirect(`/${req.session.user.userName}`);
+    res.redirect(`/${req.session.user.username}`);
 })
+})
+
+app.post("/:username/addplot",async (req,res)=>{
+    const newPlot={
+        plotID:`P${req.session.userPlot.plotCount+1}`,
+        plotName: req.body.plot_name,
+        country: req.body.country,
+        state: req.body.state,
+        district: req.body.district,
+        crop: req.body.crop,
+        latitude: Number(req.body.lat),
+        longitude: Number(req.body.lon)
+    }
+    await plots.updateOne({userName:req.session.user.username},{ 
+        $push: { plots: newPlot },
+        $inc: { plotCount: 1 }
+    });
+    res.redirect(`/${req.session.user.username}`);
 })
 /*-----------------Above Part of Progream that needs Mongodb -----------------*/ 
 

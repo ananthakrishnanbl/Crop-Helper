@@ -10,15 +10,58 @@
 </head>
 <body>
     <div class="main">
+        <div class="welcome">
+            <div class="messages">
+                <p style="font-size: 25px;" class="icon-logo"><i class="fa-brands fa-pagelines"></i>CropHelper</p>
+                <p style="font-size: 40px;text-align: left;">Welcome</p>
+                <p style="font-size: 20px;text-align: left;">
+                    Create an account to get started with CropHeleper, 
+                    a platform designed to help farmers scientifically.
+                </p>
+            </div>
+            <div class="rule-book">
+                <p>
+                    Rules for creating account:
+                </p>
+                <ul class="rules">
+                    <li>
+                        Username should not contain any spcaes or special charecters other than "_".
+                    </li>
+                    <li>
+                        Username should be unique. So no existing username will be allowed.
+                    </li>
+                    <li>
+                        Password length should contain more than 4 letters.
+                    </li>
+                </ul>
+                <!-- <div class="tick1 tick"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="tick2 tick"><i class="fa-regular fa-circle-check"></i></div>
+                <div class="tick3 tick"><i class="fa-regular fa-circle-check"></i></div> -->
+            </div>
+        </div>
         <form action="/create-account" method="POST" autocomplete="off">
             <p style="font-family: 'Allura'">Create Account</p>
             <input type="text" name="username" id="username">
             <label class="username" value=" ">Username</label>
-            <input type="text" name="password" id="password">
+            <input type="password" name="password" id="password">
+            <div id="closed" class="eye eye1"><i class="fa-regular fa-eye-slash"></i></div>
             <label class="password">Password</label>
             <input type="password" id="rpassword">
+            <div id="closed" class="eye eye2"><i class="fa-regular fa-eye-slash"></i></div>
             <label class="rpassword">Retype Password</label>
-            <input type="submit" value="CREATE" id="submit">
+            <p class="username-taken alert">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Username Already in use
+            </p>
+            <p class="password-short alert">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Password length is too short
+            </p>
+            <p class="password-match alert">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                The Passwords do not match
+            </p>
+            <input type="submit" value="CREATE" id="submit" disabled>
         </form>
     </div>
     <script>
